@@ -13,7 +13,7 @@ Code repository for THOR2 presented in a research article titled '[THOR2: Topolo
 ## Usage
 * ### Synthetic data generation:
 
-Follow instructions from [here](https://docs.panda3d.org/1.10/python/introduction/installation-windows) to install Panda3D for synthetic data generation. Create a new folder `syndata` in the directory where Panda3D is installed and place `generateSyntheticData.py` from the training folder in this repository into the `syndata` folder. Create subfolders `models` and `data` inside the `syndata` folder. Within `models`, create subfolders for all objects and place respective object meshes and texture maps inside them. Obtain synthetic depth images from the object meshes using Panda3D using the following command. 
+Follow instructions from [here](https://docs.panda3d.org/1.10/python/introduction/installation-windows) to install Panda3D for synthetic data generation. Create a new folder `syndata` in the directory where Panda3D is installed and place `generateSyntheticData.py` from this repository into the `syndata` folder. Create subfolders `models` and `data` inside the `syndata` folder. Within `models`, create subfolders for all objects and place respective object meshes and texture maps inside them. Obtain synthetic depth images from the object meshes using Panda3D using the following command. 
 
 ```bash
 python generateSyntheticData.py --obj_name <obj_name> --h <h> --p <p> --r <r>
