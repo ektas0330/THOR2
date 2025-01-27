@@ -1,6 +1,6 @@
 # THOR2: Topological Analysis for 3D Shape and Color-Based Human-Inspired Object Recognition in Unseen Environments
 
-Code repository for THOR2 presented in a research article titled '[THOR2: Topological Analysis for 3D Shape and Color-Based Human-Inspired Object Recognition in Unseen Environments](https://advanced.onlinelibrary.wiley.com/journal/26404567)' published in the Advanced Intelligent Systems.
+Code repository for THOR2 presented in a research article titled '[THOR2: Topological Analysis for 3D Shape and Color-Based Human-Inspired Object Recognition in Unseen Environments](https://advanced.onlinelibrary.wiley.com/doi/full/10.1002/aisy.202400539)' published in the Advanced Intelligent Systems.
 
 ## Requirements
 * [Panda3D](https://www.panda3d.org/)
