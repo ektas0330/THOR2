@@ -194,7 +194,7 @@ def returnvideolist(environment,category,separation,light):
     return intvideolist
 
 
-def maintest2(args.videodir,args.environment,args.category,args.separation,args.light, args.modeldir):
+def maintest2(args.videodir,args.environment,args.category,args.separation,args.light):
         
     if not os.path.exists('./testing/predictions/'):
         os.makedirs('./testing/predictions/')
@@ -269,10 +269,9 @@ if __name__ == '__main__':
     parser.add_argument('--environment')
     parser.add_argument('--category')
     parser.add_argument('--separation')
-    parser.add_argument('--light')  
-    parser.add_argument('--probsdir')   
+    parser.add_argument('--light')    
     args = parser.parse_args()
-    maintest2(args.videodir,args.environment,args.category,args.separation,args.light, args.probsdir)
+    maintest2(args.videodir,args.environment,args.category,args.separation,args.light)
  
         
         
