@@ -18,17 +18,17 @@ Follow instructions from [here](https://docs.panda3d.org/1.10/python/introductio
 ```bash
 python generate_synthetic_data.py --obj_name <obj_name> --h <h> --p <p> --r <r>
 ```
-`<obj_name>` is the name of object for which data is to be generated, and the parameters `h`,`p`, and `r` are set to reorient the object mesh as required (details in the paper) before rendering. This command will create synthetic depth (and RGB) images for the object under a subfolder `<obj_name>` inside the `data` folder.
+`<obj_name>` is the name of object for which data is to be generated, and the parameters `h`,`p`, and `r` are set to reorient the object mesh as required (details in the paper) before rendering. This command will create synthetic RGB and depth images for the object under a subfolder `<obj_name>` inside the `data` folder.
 
 * ### Computing color regions and their similarity matrix:
   
 * ### Training:
 
-  1. From within the THOR directory run the following to generate point clouds corresponding to all the generated depth images. 
+  1. From within the THOR2 directory run the following to generate point clouds corresponding to all the generated RGB-D images. 
 		```bash
-		python3 training/getPCDsFromSyntheticData.py --data_path <path_to_data_folder_from_step_i>
+		python3 training/get_PCDs_from_synthetic_data.py --data_path <path_to_data_folder_from_above>
 		```
-	2. From within the THOR directory run the following to perform view normalization on the generated point clouds. 
+	2. From within the THOR2 directory run the following to perform view normalization on the generated point clouds. 
 		```bash
 		python3 training/saveAllViewNormalizedPCDs.py --data_path <path_to_data_folder_from_step_i>
 		```
