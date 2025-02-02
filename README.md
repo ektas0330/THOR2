@@ -24,3 +24,23 @@ python generate_synthetic_data.py --obj_name <obj_name> --h <h> --p <p> --r <r>
   
 * ### Training:
 
+  1. From within the THOR directory run the following to generate point clouds corresponding to all the generated depth images. 
+		```bash
+		python3 training/getPCDsFromSyntheticData.py --data_path <path_to_data_folder_from_step_i>
+		```
+	2. From within the THOR directory run the following to perform view normalization on the generated point clouds. 
+		```bash
+		python3 training/saveAllViewNormalizedPCDs.py --data_path <path_to_data_folder_from_step_i>
+		```
+	3. From within the THOR directory run the following to generate Persistence Images (PIs) for the TOPS descriptor of all the point clouds.
+		```bash
+		python3 training/computePIsFromViewNormalizedPCDs.py --data_path <path_to_data_folder_from_step_i>
+		```
+		A subfolder named `libpis` containing all the PIs will be generated inside the  `training` folder .
+
+	4. Run the following to train one multilayer perceptron (MLP) using the TOPS descriptor and another MLP using the TOPS2 descriptor.
+
+		```bash
+		```
+		 A folder `librarymodels` will be created inside the `training` directory and trained models will be stored in it.
+
