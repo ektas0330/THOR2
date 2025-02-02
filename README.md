@@ -21,6 +21,13 @@ python generate_synthetic_data.py --obj_name <obj_name> --h <h> --p <p> --r <r>
 `<obj_name>` is the name of object for which data is to be generated, and the parameters `h`,`p`, and `r` are set to reorient the object mesh as required (details in the paper) before rendering. This command will create synthetic RGB and depth images for the object under a subfolder `<obj_name>` inside the `data` folder.
 
 * ### Computing color regions and their similarity matrix:
+
+Run the following to cluster colors in the sRGB color space using the Mapper algorithm. 
+```bash
+python3 get_color_regions_using_mapper.py
+python3 get_similarity_matrix.py
+```
+As a result, a lookup table is generated containing membership information, mapping each color region (cluster) to its specific colors (members). A similarity matrix capturing the similarity and connectivity between the different color regions is also computed.
   
 * ### Training:
 
