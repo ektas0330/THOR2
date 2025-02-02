@@ -167,4 +167,15 @@ nnodes = len(undirected)
 weighted = create_weighted_graph(graph,undirected)
 
 sim = get_similarity_matrix_v6(weighted, undirected)
-np.save('similarity_v6_new2dlens_hue_saturation_withfake.npy',sim)
+np.save('similarity_new2dlens_hue_saturation_withfake.npy',sim)
+
+membership = {}
+for node, members in graph['nodes'].items():
+    nodeid = node.split('_')[0][4:]
+    for m in members:
+        if m not in membership:
+            membership[tuple(rgb[m])] = [nodeid]
+        else:
+            membership[tuple(rgb[m])].append(nodeid)
+            
+np.save('node_membership_lookup_new2dlens_hue_saturation_withfake.npy', membership)
