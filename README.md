@@ -63,7 +63,7 @@ As a result, a lookup table is generated containing membership information, mapp
   		python3 train_mlp_for_tops2.py --data_path <path_to_data_folder_from_step_one> --random_state 2022
 		```
 
-		 A folder `mlp_modela` will be created inside the `training` directory and trained models will be stored in it.
+		 A folder `mlp_models` will be created inside the `training` directory and trained models will be stored in it.
 
 * ### Testing on the UW-IS Occluded Dataset:
 	1. Download the UWISOccludedDataset.zip from [here](https://doi.org/10.6084/m9.figshare.20506506) and unzip it. Place `reogranizeUWISOccluded.sh` inside the `UWISOccludedDataset` folder and run the following from within that folder.
@@ -72,4 +72,9 @@ As a result, a lookup table is generated containing membership information, mapp
 		sh reorganizeUWISOccluded.sh
 		```
   	2. 
+	```bash
+ 	python3 test_using_tops.py --videodir <path_to_dataset_folder_from_the_previous_step> --environment <environment_name> --category <category_name> --separation <separation> --light <light> --modeldir <path_to_model_dir_generated_step5_of_training>
+ 	python3 test_using_tops2.py --videodir <path_to_dataset_folder_from_the_previous_step> --environment <environment_name> --category <category_name> --separation <separation> --light <light> --modeldir <path_to_model_dir_generated_step5_of_training>
+ 	python3 test_using_tops2.py --videodir <path_to_dataset_folder_from_the_previous_step> --environment <environment_name> --category <category_name> --separation <separation> --light <light>
+ 	```
 
