@@ -161,60 +161,69 @@ def roundpcdcolor(ptscolors):
     
     return np.asarray(rounded)
 
-version = 'v6'
-membership = np.load('/home/smartslab/Desktop/Appearance/after_general/Mapper/node_membership_lookup_new2dlens_hue_saturation_withfake.npy',allow_pickle=True).item()
-similarity = np.load('/home/smartslab/Desktop/Appearance/after_general/Mapper/similarity_'+version+'_new2dlens_hue_saturation_withfake.npy')
-nnodes = np.shape(similarity)[0]
 
-model_type = 'all'
 
-    
-if model_type == 'all':
+def main(data_path):
+
+    embeddir = './training/libembeds/'
+    os.mkdir(embeddir)
     cam_a = [i for i in range(0,360,5)]
     cam_b = [i for i in range(0,185,5)]
     cam_a_remove = []
     cam_b_remove = [0,5,175,180]     
     cam_a_final = list(set(cam_a) - set(cam_a_remove))
     cam_b_final = list(set(cam_b) - set(cam_b_remove))
-            
-            
+    
+    membership = np.load('./node_membership_lookup_new2dlens_hue_saturation_withfake.npy',allow_pickle=True).item()
+    similarity = np.load('/similarity_new2dlens_hue_saturation_withfake.npy')
+    nnodes = np.shape(similarity)[0]
 
-object_list = os.listdir('./library/')
-for oname in object_list[0:8]:
-    data = {} 
-    print(oname)
-    maxlayers = 0
-    instances = {}
-
-    for bdeg in  cam_b_final:
-        folder = str(bdeg)+'/0'
-        print(folder)
-        for file in cam_a_final:
-            for aug in range(4):
-                pcd = o3d.io.read_point_cloud('./library/'+oname+'/'+folder+'/'+'flatcolorpcdwcam/'+str(file)+'.pcd')
-                
-                trpcd = trXMinusCam(trYMinusCam(trZMinusCam(pcd)))
-                rotatedpcd = orientCamBottom(trpcd)
-                finaltrpcd = trXMinusCam(trYMinusCam(trZMinusCam(rotatedpcd)))
-
-                rotatedpcd = rotateForLayeringOption2WAug(finaltrpcd,aug)
-                finalpcd = trXMinusCam(trYMinusCam(trZMinusCam(rotatedpcd)))
-                finalpcd.has_colors()
-                
-                pcdpts = np.asarray(finalpcd.points)
-                ptscolors = np.asarray(finalpcd.colors)
-                rounded = roundinXYZ(pcdpts) 
-                zs = getZs(rounded)
-                
-                pis = {}
-                for key,value in zs.items():
-                    layer, layercolor = getColorLayer(ptscolors,rounded,zs,key)
+    object_list = os.listdir(data_path)
+    for oname in object_list:
+        data = {} 
+        print(oname)
+        maxlayers = 0
+        instances = {}
+    
+        for bdeg in  cam_b_final:
+            folder = str(bdeg)+'/0'
+            for file in cam_a_final:
+                for aug in range(4):
+                    pcd = o3d.io.read_point_cloud(data_path+oname+'/'+folder+'/'+'vnpcdwcam/'+str(file)+'.pcd')
                     
-                    colormatrix = computeColorEmbeddingNo2DTranslation(layer, layercolor, membership,nnodes)
-                    embed = get_embedding_from_color_matrix(colormatrix,similarity)
+                    trpcd = trXMinusCam(trYMinusCam(trZMinusCam(pcd)))
+                    rotatedpcd = orientCamBottom(trpcd)
+                    finaltrpcd = trXMinusCam(trYMinusCam(trZMinusCam(rotatedpcd)))
+    
+                    rotatedpcd = rotateForLayeringOption2WAug(finaltrpcd,aug)
+                    finalpcd = trXMinusCam(trYMinusCam(trZMinusCam(rotatedpcd)))
+                    finalpcd.has_colors()
 
-                    pis[key] = embed
-                maxlayers = max(maxlayers,key+1)
-                instances['a'+str(aug)+'_'+str(bdeg)+'_'+str(file)] = pis
-    data[oname] = (instances,maxlayers)
-    np.save('./libembeds'+version+'/train1_library_allembeds_'+oname+'.npy',data)    
+                    pcdpts = np.asarray(finalpcd.points)
+                    ptscolors = np.asarray(finalpcd.colors)
+    
+                    rounded = roundinXYZ(pcdpts)
+    
+                    
+                    zs = getZs(rounded)
+                    pis = {}
+                    for key,value in zs.items():
+                        layer, layercolor = getColorLayer(ptscolors,rounded,zs,key)
+                        
+                        colormatrix = computeColorEmbeddingNo2DTranslation(layer, layercolor, membership,nnodes)
+                        embed = get_embedding_from_color_matrix(colormatrix,similarity)
+
+                        pis[key] = embed
+                    maxlayers = max(maxlayers,key+1)
+                    instances['a'+str(aug)+'_'+str(bdeg)+'_'+str(file)] = pis
+
+        data[oname] = (instances,maxlayers)
+        np.save(embeddir+'allembeds_'+oname+'.npy',data)    
+
+
+    
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data_path')
+    args = parser.parse_args()
+    main(args.data_path)
