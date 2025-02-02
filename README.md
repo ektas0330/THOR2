@@ -24,21 +24,27 @@ python generate_synthetic_data.py --obj_name <obj_name> --h <h> --p <p> --r <r>
   
 * ### Training:
 
-  1. From within the THOR2 directory run the following to generate point clouds corresponding to all the generated RGB-D images. 
+  	1. From within the THOR2 directory run the following to generate point clouds corresponding to all the generated RGB-D images. 
 		```bash
 		python3 training/get_PCDs_from_synthetic_data.py --data_path <path_to_data_folder_from_above>
 		```
 	2. From within the THOR2 directory run the following to perform view normalization on the generated point clouds. 
 		```bash
-		python3 training/saveAllViewNormalizedPCDs.py --data_path <path_to_data_folder_from_step_i>
+		python3 training/save_all_view_normalized_PCDs.py --data_path <path_to_data_folder_from_step_i>
 		```
-	3. From within the THOR directory run the following to generate Persistence Images (PIs) for the TOPS descriptor of all the point clouds.
+	3. From within the THOR2 directory run the following to generate Persistence Images (PIs) for the TOPS descriptor of all the point clouds. 
 		```bash
-		python3 training/computePIsFromViewNormalizedPCDs.py --data_path <path_to_data_folder_from_step_i>
+		python3 training/compute_PIs_from_view_normalized_PCDs.py --data_path <path_to_data_folder_from_step_i>
 		```
-		A subfolder named `libpis` containing all the PIs will be generated inside the  `training` folder .
+		A subfolder named `libpis` containing all the PIs will be generated inside the `training` folder.
 
-	4. Run the following to train one multilayer perceptron (MLP) using the TOPS descriptor and another MLP using the TOPS2 descriptor.
+	4. From within the THOR2 directory, run the following to generate color embeddings for the TOPS2 descriptor (i.e., descriptor with color embeddings interleaved with the TOPS descriptor) of all the point clouds. 
+		```bash
+		python3 training/compute_embeddings_from_view_normalized_PCDs.py --data_path <path_to_data_folder_from_step_i>
+		```
+		A subfolder named `libembeds` containing all the embeddings will be generated inside the `training` folder.
+
+	5. Run the following to train one multilayer perceptron (MLP) using the TOPS descriptor and another MLP using the TOPS2 descriptor.
 
 		```bash
 		```
