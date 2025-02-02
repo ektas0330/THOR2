@@ -20,5 +20,7 @@ python generate_synthetic_data.py --obj_name <obj_name> --h <h> --p <p> --r <r>
 ```
 `<obj_name>` is the name of object for which data is to be generated, and the parameters `h`,`p`, and `r` are set to reorient the object mesh as required (details in the paper) before rendering. This command will create synthetic depth (and RGB) images for the object under a subfolder `<obj_name>` inside the `data` folder.
 
-  * ### Training:
+* ### Computing color regions and their similarity matrix:
+  
+* ### Training:
 
