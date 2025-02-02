@@ -6,6 +6,8 @@ Code repository for THOR2 presented in a research article titled '[THOR2: Topolo
 * [Panda3D](https://www.panda3d.org/)
 * Open3D
 * persim 0.3.1
+* [Kepler Mapper 2.0.1](https://kepler-mapper.scikit-tda.org/en/latest/started.html)
+* [Colour 0.3.16](https://colour.readthedocs.io/en/master/index.html)
 * scikit-learn
 * Keras
 * Platform: This code has been tested on Ubuntu 18.04 (except synthetic data generation using Panda3D, which is done on a computer running Windows 10).
