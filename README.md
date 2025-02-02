@@ -63,3 +63,11 @@ As a result, a lookup table is generated containing membership information, mapp
 
 		 A folder `mlp_modela` will be created inside the `training` directory and trained models will be stored in it.
 
+* ### Testing on the UW-IS Occluded Dataset:
+	1. Download the UWISOccludedDataset.zip from [here](https://doi.org/10.6084/m9.figshare.20506506) and unzip it. Place `reogranizeUWISOccluded.sh` inside the `UWISOccludedDataset` folder and run the following from within that folder.
+
+		```bash
+		sh reorganizeUWISOccluded.sh
+		```
+  	2. 
+
