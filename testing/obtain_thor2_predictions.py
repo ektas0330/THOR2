@@ -1,9 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-Created on Thu Jun 22 19:15:33 2023
-
-@author: smartslab
+@author: Ekta Samani
 """
 
 import fnmatch,os
