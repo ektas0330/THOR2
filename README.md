@@ -44,9 +44,15 @@ python generate_synthetic_data.py --obj_name <obj_name> --h <h> --p <p> --r <r>
 		```
 		A subfolder named `libembeds` containing all the embeddings will be generated inside the `training` folder.
 
-	5. Run the following to train one multilayer perceptron (MLP) using the TOPS descriptor and another MLP using the TOPS2 descriptor.
-
+	5. Change the working directory to the `training` directory using `cd training` and run the following to train one multilayer perceptron (MLP) using the TOPS descriptor 
 		```bash
+  		python3 train_mlp_for_tops.py --data_path <path_to_data_folder_from_step_one> --random_state 2022
 		```
-		 A folder `librarymodels` will be created inside the `training` directory and trained models will be stored in it.
+  		and another MLP using the TOPS2 descriptor.
+    
+		```bash
+  		python3 train_mlp_for_tops2.py --data_path <path_to_data_folder_from_step_one> --random_state 2022
+		```
+
+		 A folder `mlp_modela` will be created inside the `training` directory and trained models will be stored in it.
 
