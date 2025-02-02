@@ -637,7 +637,7 @@ def maintest1(args.videodir,args.environment,args.category,args.separation,args.
     refnormals = np.asarray([[1,0,0],[0,1,0],[0,0,1],[-1,0,0],[0,-1,0],[0,0,-1]])
 
 
-    model = loadMLP(loadMLP('./mlp_models/'+seq,maxLayers,model_type)
+    model = loadMLP(modeldir+seq,maxLayers,model_type)
 
 
 
