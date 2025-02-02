@@ -71,7 +71,7 @@ As a result, a lookup table is generated containing membership information, mapp
 		```bash
 		sh reorganizeUWISOccluded.sh
 		```
-  	2. 
+  	2. Run the following to obtain recognition predictions using THOR2 on videos in the UWISOccluded dataset. Note that `<environment_name>` must be replaced with one of  `warehouse`,`lounge`, or `both` as desired. Similarly `<category_name>` can be `kitchen`, `food`, `tools`  or `all`; `<separation>` can be `level1`, `level2`, `level3`  or `alllevels`; `<light>` can be `1`,`2`, or `both`.
 	```bash
  	python3 test_using_tops.py --videodir <path_to_dataset_folder_from_the_previous_step> --environment <environment_name> --category <category_name> --separation <separation> --light <light> --modeldir <path_to_model_dir_generated_step5_of_training>
  	python3 test_using_tops2.py --videodir <path_to_dataset_folder_from_the_previous_step> --environment <environment_name> --category <category_name> --separation <separation> --light <light> --modeldir <path_to_model_dir_generated_step5_of_training>
